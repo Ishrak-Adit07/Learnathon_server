@@ -17,6 +17,7 @@ public class CropServiceImpl implements CropService {
 
     private final CropRepository cropRepository;
 
+    @Override
     public List<CropResponse> getAllCrops() {
        return cropRepository.findAllCrops();
     }
