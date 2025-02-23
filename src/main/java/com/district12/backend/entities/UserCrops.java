@@ -1,0 +1,35 @@
+package com.district12.backend.entities;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import java.time.ZonedDateTime;
+
+@Entity
+@Table(name = "crops")
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
+public class UserCrops {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
+    @ToString.Exclude
+    private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(nullable = false)
+    @ToString.Exclude
+    private Product product;
+
+    @Column(nullable = false)
+    private ZonedDateTime selectedAt;
+}
