@@ -29,6 +29,12 @@ public class CropControllerV1 {
         return ResponseEntity.ok(allCrops);
     }
 
+    @GetMapping("/user")
+    public ResponseEntity<List<CropResponse>> getUserCrops() {
+        List<CropResponse> cropResponses = cropService.getUserCrops(SecurityUtils.getOwnerID());
+        return ResponseEntity.ok(cropResponses);
+    }
+
     @GetMapping("/{cropId}")
     public ResponseEntity<CropResponse> getCropDetails(
             @PathVariable Long cropId
@@ -50,7 +56,6 @@ public class CropControllerV1 {
     public ResponseEntity<List<CropResponse>> deSelectCropsForUser(
             @Valid @RequestBody CropSelectRequest cropDeselectRequest
     ) {
-        User user = userService.getUserById(SecurityUtils.getOwnerID());
         List<CropResponse> deselectedCropsResponse = cropService.deselectCropsForUser(cropDeselectRequest.getCropIds());
         return ResponseEntity.ok(deselectedCropsResponse);
     }

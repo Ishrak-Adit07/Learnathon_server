@@ -22,7 +22,6 @@ public class CropServiceImpl implements CropService {
 
     private final CropRepository cropRepository;
     private final UserCropsRepository userCropsRepository;
-    private final UserService userService;
 
     @Override
     public List<CropResponse> getAllCrops() {
@@ -32,6 +31,10 @@ public class CropServiceImpl implements CropService {
     @Override
     public CropResponse getCropDetailsById(Long id) {
         return cropRepository.getCropDetailsById(id);
+    }
+
+    public List<CropResponse> getUserCrops(Long userId) {
+        return userCropsRepository.findAllCropsByUserId(userId);
     }
 
     private List<Crop> getCropsById(List<Long> cropIds) {
