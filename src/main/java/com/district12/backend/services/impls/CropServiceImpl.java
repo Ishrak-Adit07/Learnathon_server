@@ -60,4 +60,24 @@ public class CropServiceImpl implements CropService {
         return cropResponses;
     }
 
+    @Override
+    public List<CropResponse> deselectCropsForUser(List<Long> userCropIds) {
+        List<UserCrops> userCropsList = userCropsRepository.findAllById(userCropIds);
+
+        if (userCropsList.isEmpty()) {
+            throw new EntityNotFoundException("No user crops found for the provided IDs.");
+        }
+
+        List<CropResponse> cropResponses = userCropsList.stream()
+                .map(uc -> new CropResponse(
+                        uc.getCrop().getId(),
+                        uc.getCrop().getName(),
+                        uc.getCrop().getDescription()))
+                .toList();
+
+        userCropsRepository.deleteAll(userCropsList);
+
+        return cropResponses;
+    }
+
 }

@@ -10,5 +10,7 @@ public interface CropService {
     List<CropResponse> getAllCrops();
     CropResponse getCropDetailsById(Long id);
     List<CropResponse> selectCropsForUser(User user, List<Long> cropIds);
+    List<CropResponse> deselectCropsForUser(List<Long> userCropIds);
 
 }
+
