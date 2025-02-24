@@ -28,7 +28,7 @@ public class UserCrops {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false)
     @ToString.Exclude
-    private Product product;
+    private Crop crop;
 
     @Column(nullable = false)
     private ZonedDateTime selectedAt;
