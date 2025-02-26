@@ -17,6 +17,9 @@ public interface AlertRepository extends JpaRepository<Alert, Long>, JpaSpecific
     @Query("SELECT a FROM Alert a WHERE a.user.id = :userId")
     List<Alert> findAllByUserId(@Param("userId") Long userId);
 
+    @Query("SELECT a FROM Alert a WHERE a.user.id = :userId AND a.readAt = NULL")
+    List<Alert> findUnreadByUserId(@Param("userId") Long userId);
+
     @Query("SELECT a FROM Alert a WHERE a.crop.id = :cropId")
     List<Alert> findAllByCropId(@Param("cropId") Long cropId);
 

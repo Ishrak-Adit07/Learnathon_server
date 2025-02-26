@@ -28,19 +28,25 @@ public class AlertControllerV1 {
     }
 
     @GetMapping("/type/{alertType}")
-    public ResponseEntity<List<Alert>> getAlertByType(@PathVariable("alertType") String alertType) {
+    public ResponseEntity<List<Alert>> getAlertsByType(@PathVariable("alertType") String alertType) {
         List<Alert> alertsByType = alertService.getAllAlertsByType(alertType);
         return ResponseEntity.ok(alertsByType);
     }
 
+    @GetMapping("/user/un-read")
+    public ResponseEntity<List<Alert>> getUnreadAlertsByUserId() {
+        List<Alert> unreadAlertsByUserId = alertService.getUnreadAlertsByUserId(SecurityUtils.getOwnerID());
+        return ResponseEntity.ok(unreadAlertsByUserId);
+    }
+
     @GetMapping("/user")
-    public ResponseEntity<List<Alert>> getAlertByUserId() {
+    public ResponseEntity<List<Alert>> getAlertsByUserId() {
         List<Alert> alertsByUserId = alertService.getAllAlertsByUserId(SecurityUtils.getOwnerID());
         return ResponseEntity.ok(alertsByUserId);
     }
 
     @GetMapping("/crop/{cropId}")
-    public ResponseEntity<List<Alert>> getAlertByCropId(@PathVariable("cropId") Long cropId) {
+    public ResponseEntity<List<Alert>> getAlertsByCropId(@PathVariable("cropId") Long cropId) {
         List<Alert> alertsByCropId = alertService.getAllAlertsByCropId(cropId);
         return ResponseEntity.ok(alertsByCropId);
     }

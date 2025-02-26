@@ -40,4 +40,7 @@ public class Alert {
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private ZonedDateTime createdAt;
+
+    @Column(name = "read_at", nullable = false, updatable = false)
+    private ZonedDateTime readAt;
 }
