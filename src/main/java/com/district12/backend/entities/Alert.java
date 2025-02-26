@@ -1,5 +1,6 @@
 package com.district12.backend.entities;
 
+import com.district12.backend.enums.AlertPriority;
 import com.district12.backend.enums.AlertType;
 import jakarta.persistence.*;
 import lombok.*;
@@ -26,16 +27,20 @@ public class Alert {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "crop_id", nullable = false)
-    private Crop crop;
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "crop_id", nullable = false)
+//    private Crop crop;
 
-    @Column(name = "alert_text", nullable = false, columnDefinition = "TEXT")
-    private String alertText;
+//    @Column(name = "alert_text", nullable = false, columnDefinition = "TEXT")
+//    private String alertText;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "alert_type", nullable = false)
     private AlertType alertType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "priority", nullable = false)
+    private AlertPriority alertPriority;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
