@@ -2,6 +2,7 @@ package com.district12.backend.controllers.server;
 
 import com.district12.backend.entities.Alert;
 import com.district12.backend.services.abstractions.AlertService;
+import com.district12.backend.utils.SecurityUtils;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +21,22 @@ public class AlertControllerV1 {
 
     private final AlertService alertService;
 
-    @GetMapping("/{alertType}")
+    @GetMapping("/type/{alertType}")
     public ResponseEntity<List<Alert>> getAlertByType(@PathVariable("alertType") String alertType) {
         List<Alert> alertsByType = alertService.getAllAlertsByType(alertType);
         return ResponseEntity.ok(alertsByType);
+    }
+
+    @GetMapping("/user")
+    public ResponseEntity<List<Alert>> getAlertByUserId() {
+        List<Alert> alertsByUserId = alertService.getAllAlertsByUserId(SecurityUtils.getOwnerID());
+        return ResponseEntity.ok(alertsByUserId);
+    }
+
+    @GetMapping("/crop/{cropId}")
+    public ResponseEntity<List<Alert>> getAlertByCropId(@PathVariable("cropId") Long cropId) {
+        List<Alert> alertsByCropId = alertService.getAllAlertsByCropId(cropId);
+        return ResponseEntity.ok(alertsByCropId);
     }
 
 }

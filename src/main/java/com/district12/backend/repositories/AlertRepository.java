@@ -15,10 +15,10 @@ import java.util.UUID;
 public interface AlertRepository extends JpaRepository<Alert, UUID>, JpaSpecificationExecutor<Alert> {
 
     @Query("SELECT a FROM Alert a WHERE a.user.id = :userId")
-    List<Alert> findAllByUserId(@Param("userId") UUID userId);
+    List<Alert> findAllByUserId(@Param("userId") Long userId);
 
     @Query("SELECT a FROM Alert a WHERE a.crop.id = :cropId")
-    List<Alert> findAllByCropId(@Param("cropId") UUID cropId);
+    List<Alert> findAllByCropId(@Param("cropId") Long cropId);
 
     @Query("SELECT a FROM Alert a WHERE a.alertType = :alertType")
     List<Alert> findAllByAlertType(@Param("alertType") AlertType alertType);

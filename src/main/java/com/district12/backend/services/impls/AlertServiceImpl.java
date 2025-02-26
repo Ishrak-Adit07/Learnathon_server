@@ -1,6 +1,5 @@
 package com.district12.backend.services.impls;
 
-import com.district12.backend.dtos.response.CropResponse;
 import com.district12.backend.entities.Alert;
 import com.district12.backend.enums.AlertType;
 import com.district12.backend.repositories.AlertRepository;
@@ -19,11 +18,21 @@ public class AlertServiceImpl implements AlertService {
     @Override
     public List<Alert> getAllAlertsByType(String alertType) {
         try {
-            AlertType type = AlertType.valueOf(alertType.toUpperCase());  // Convert String to Enum (case-insensitive)
+            AlertType type = AlertType.valueOf(alertType.toUpperCase());
             return alertRepository.findAllByAlertType(type);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("Invalid alert type: " + alertType + ". Allowed values: DISEASE, TASK_REMINDER.");
+            throw new IllegalArgumentException("Invalid alert type: " + alertType);
         }
+    }
+
+    @Override
+    public List<Alert> getAllAlertsByUserId(Long userId) {
+        return alertRepository.findAllByUserId(userId);
+    }
+
+    @Override
+    public List<Alert> getAllAlertsByCropId(Long cropId) {
+        return alertRepository.findAllByCropId(cropId);
     }
 
 }

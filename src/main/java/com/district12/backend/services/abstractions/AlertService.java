@@ -8,5 +8,7 @@ import java.util.List;
 public interface AlertService {
 
     List<Alert> getAllAlertsByType(String alertType);
+    List<Alert> getAllAlertsByUserId(Long userId);
+    List<Alert> getAllAlertsByCropId(Long cropId);
 
 }
