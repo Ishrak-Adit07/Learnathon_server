@@ -21,11 +21,11 @@ public class AlertControllerV1 {
 
     private final AlertService alertService;
 
-//    @GetMapping("/{alertId}")
-//    public ResponseEntity<Alert> getAlertById(@PathVariable("alertId") Long alertId) {
-//        Alert alertById = alertService.getAllAlertsByType(alertId);
-//        return ResponseEntity.ok(alertById);
-//    }
+    @GetMapping("/{alertId}")
+    public ResponseEntity<Alert> getAlertById(@PathVariable("alertId") Long alertId) {
+        Alert alertById = alertService.getAlertById(alertId);
+        return ResponseEntity.ok(alertById);
+    }
 
     @GetMapping("/type/{alertType}")
     public ResponseEntity<List<Alert>> getAlertByType(@PathVariable("alertType") String alertType) {

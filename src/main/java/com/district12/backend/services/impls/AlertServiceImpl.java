@@ -35,4 +35,8 @@ public class AlertServiceImpl implements AlertService {
         return alertRepository.findAllByCropId(cropId);
     }
 
+    public Alert getAlertById(Long alertId) {
+        return alertRepository.findById(alertId).orElse(null);
+    }
+
 }
