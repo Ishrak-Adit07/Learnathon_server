@@ -1,6 +1,6 @@
 package com.district12.backend.enums;
 
-public enum CropAlertsType {
+public enum CropAlertType {
     DROUGHT_STRESS,          // Crop hasn't been watered for an extended period.
     OVER_WATERING,            // Excessive watering detected.
     NUTRIENT_DEFICIENCY,     // Signs of nutrient deficiency (e.g., yellowing leaves).
