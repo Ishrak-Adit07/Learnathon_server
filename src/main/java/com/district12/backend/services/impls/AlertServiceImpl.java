@@ -36,10 +36,23 @@ public class AlertServiceImpl implements AlertService {
     }
 
     @Override
+    public Alert markAlertReadByUser(Long userId, Long alertId) {
+        Alert alert = alertRepository.findById(alertId).orElse(null);
+        if (alert != null) {
+            throw new RuntimeException("No such alert found");
+        }
+        if(alert.getUser().getId() != userId){
+            throw new RuntimeException("User is not authorized to mark this alert as read");
+        }
+        return alertRepository.markAlertAsRead(userId, alertId);
+    }
+
+    @Override
     public List<Alert> getAllAlertsByCropId(Long cropId) {
         return alertRepository.findAllByCropId(cropId);
     }
 
+    @Override
     public Alert getAlertById(Long alertId) {
         return alertRepository.findById(alertId).orElse(null);
     }
