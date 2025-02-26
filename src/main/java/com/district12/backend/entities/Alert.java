@@ -19,8 +19,8 @@ public class Alert {
 
     @Id
     @GeneratedValue
-    @Column(nullable = false, updatable = false)
-    private UUID id;
+    @Column(updatable = false, nullable = false)
+    private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "user_id", nullable = false)
